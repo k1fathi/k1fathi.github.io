@@ -1,1 +1,82 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Wavy Text Effect</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://threejs.org/build/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/libs/dat.gui.min.js"></script>
+    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/TextGeometry.js"></script>
+
+    <script>
+        // Basic setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Light
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(0, 1, 1).normalize();
+        scene.add(light);
+
+        // Load the font and create the text
+        const loader = new THREE.FontLoader();
+        loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+            const textGeometry = new THREE.TextGeometry('ZUZZUU', {
+                font: font,
+                size: 5,
+                height: 1,
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 0.1,
+                bevelSize: 0.1,
+                bevelOffset: 0,
+                bevelSegments: 5
+            });
+
+            const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+            const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+            textGeometry.computeBoundingBox();
+            const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
+
+            textMesh.position.x = centerOffset;
+            textMesh.position.y = 0;
+            textMesh.position.z = 0;
+
+            scene.add(textMesh);
+
+            // Animate the wave effect
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const time = Date.now() * 0.001;
+                const waveAmplitude = 1;
+                const waveFrequency = 2;
+
+                textGeometry.vertices.forEach((vertex, i) => {
+                    vertex.z = Math.sin(i + time * waveFrequency) * waveAmplitude;
+                });
+
+                textGeometry.verticesNeedUpdate = true;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        });
+
+        camera.position.z = 20;
+    </script>
+</body>
+</html>
