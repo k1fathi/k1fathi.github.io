@@ -58,9 +58,9 @@
             function animate() {
                 requestAnimationFrame(animate);
 
-                const time = Date.now() * 0.001;
+                const time = Date.now() * 0.002; // Increased time multiplier for faster movement
                 const waveAmplitude = 0.5;
-                const waveFrequency = 2;
+                const waveFrequency = 5; // Increased frequency for sharper movement
 
                 const vertices = textGeometry.attributes.position.array;
                 for (let i = 0; i < vertices.length; i += 3) {
