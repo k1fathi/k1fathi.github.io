@@ -10,11 +10,9 @@
     </style>
 </head>
 <body>
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/libs/dat.gui.min.js"></script>
-    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
-    <script src="https://threejs.org/examples/js/loaders/TextGeometry.js"></script>
+    <script src="https://threejs.org/examples/js/geometries/TextGeometry.js"></script>
 
     <script>
         // Basic setup
@@ -61,13 +59,12 @@
                 requestAnimationFrame(animate);
 
                 const time = Date.now() * 0.001;
-                const waveAmplitude = 1;
+                const waveAmplitude = 0.5;
                 const waveFrequency = 2;
 
-                textGeometry.vertices.forEach((vertex, i) => {
-                    vertex.z = Math.sin(i + time * waveFrequency) * waveAmplitude;
-                });
-
+                for (let i = 0; i < textGeometry.vertices.length; i++) {
+                    textGeometry.vertices[i].z = Math.sin(i + time * waveFrequency) * waveAmplitude;
+                }
                 textGeometry.verticesNeedUpdate = true;
 
                 renderer.render(scene, camera);
