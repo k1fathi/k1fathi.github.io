@@ -62,18 +62,22 @@
                 const waveAmplitude = 0.5;
                 const waveFrequency = 2;
 
-                for (let i = 0; i < textGeometry.vertices.length; i++) {
-                    textGeometry.vertices[i].z = Math.sin(i + time * waveFrequency) * waveAmplitude;
+                const vertices = textGeometry.attributes.position.array;
+                for (let i = 0; i < vertices.length; i += 3) {
+                    vertices[i + 2] = Math.sin(vertices[i] * waveFrequency + time) * waveAmplitude;
                 }
-                textGeometry.verticesNeedUpdate = true;
+                textGeometry.attributes.position.needsUpdate = true;
 
                 renderer.render(scene, camera);
             }
 
             animate();
+        }, undefined, function (error) {
+            console.error('An error happened', error);
         });
 
-        camera.position.z = 20;
+        // Adjust camera position
+        camera.position.z = 30;
     </script>
 </body>
 </html>
