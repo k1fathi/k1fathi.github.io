@@ -3,81 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Wavy Text Effect</title>
+    <title>Zuzzu Logo Animation</title>
     <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
+        #zuzzuuLogo {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background-color: transparent;
+            border-radius: 50%;
+            padding: 0.5rem;
+            width: 4rem;
+            height: 4rem;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #zuzzuuLogo div {
+            width: 100%;
+            height: 100%;
+        }
+
+        #zuzzuuLogo:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
-    <script src="https://threejs.org/examples/js/geometries/TextGeometry.js"></script>
+    <div id="zuzzuuLogo">
+        <div id="lottie"></div>
+    </div>
 
     <script>
-        // Basic setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Light
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(0, 1, 1).normalize();
-        scene.add(light);
-
-        // Load the font and create the text
-        const loader = new THREE.FontLoader();
-        loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-            const textGeometry = new THREE.TextGeometry('ZUZZUU', {
-                font: font,
-                size: 5,
-                height: 1,
-                curveSegments: 12,
-                bevelEnabled: true,
-                bevelThickness: 0.1,
-                bevelSize: 0.1,
-                bevelOffset: 0,
-                bevelSegments: 5
-            });
-
-            const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-            const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-            textGeometry.computeBoundingBox();
-            const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
-
-            textMesh.position.x = centerOffset;
-            textMesh.position.y = 0;
-            textMesh.position.z = 0;
-
-            scene.add(textMesh);
-
-            // Animate the wave effect
-            function animate() {
-                requestAnimationFrame(animate);
-
-                const time = Date.now() * 0.002; // Increased time multiplier for faster movement
-                const waveAmplitude = 0.5;
-                const waveFrequency = 5; // Increased frequency for sharper movement
-
-                const vertices = textGeometry.attributes.position.array;
-                for (let i = 0; i < vertices.length; i += 3) {
-                    vertices[i + 2] = Math.sin(vertices[i] * waveFrequency + time) * waveAmplitude;
-                }
-                textGeometry.attributes.position.needsUpdate = true;
-
-                renderer.render(scene, camera);
+        (function() {
+            // Function to load the Lottie library dynamically
+            function loadLottieLibrary(callback) {
+                var script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.13/lottie.min.js';
+                script.onload = callback; // Call the callback function once the script is loaded
+                document.head.appendChild(script);
             }
 
-            animate();
-        }, undefined, function (error) {
-            console.error('An error happened', error);
-        });
+            // Function to get the URL of the current JavaScript file
+            function getCurrentScriptUrl() {
+                var currentScript = document.currentScript;
+                if (currentScript) {
+                    return currentScript.src;
+                }
 
-        // Adjust camera position
-        camera.position.z = 30;
+                // Fallback method if document.currentScript is not supported
+                var scripts = document.getElementsByTagName('script');
+                return scripts[scripts.length - 1].src;
+            }
+
+            // Function to initialize the Lottie animation after the library is loaded
+            function initializeLottieAnimation() {
+                // Define the path to the JSON file relative to the script's location
+                var scriptUrl = getCurrentScriptUrl();
+                var baseUrl = scriptUrl.substring(0, scriptUrl.lastIndexOf('/') + 1);
+                var animationPath = baseUrl + 'zuzzuu_logo.json';
+
+                lottie.loadAnimation({
+                    container: document.getElementById('lottie'), // Element where the animation will be loaded
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: animationPath // Use the dynamically determined path
+                });
+            }
+
+            // Function to initialize everything after the DOM is ready
+            function initialize() {
+                loadLottieLibrary(initializeLottieAnimation); // Load the Lottie library and initialize the animation
+            }
+
+            // Add event listener for DOMContentLoaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initialize);
+            } else {
+                initialize(); // If DOMContentLoaded has already fired, run initialize immediately
+            }
+        })();
     </script>
 </body>
 </html>
