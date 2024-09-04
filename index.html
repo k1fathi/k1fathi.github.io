@@ -4,89 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zuzzu Logo Animation</title>
-    <style>
-        #zuzzuuLogo {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background-color: transparent;
-            border-radius: 50%;
-            padding: 0.5rem;
-            width: 4rem;
-            height: 4rem;
-            overflow: hidden;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #zuzzuuLogo div {
-            width: 100%;
-            height: 100%;
-        }
-
-        #zuzzuuLogo:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    
 </head>
 <body>
-    <div id="zuzzuuLogo">
-        <div id="lottie"></div>
-    </div>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 
-    <script>
-        (function() {
-            // Function to load the Lottie library dynamically
-            function loadLottieLibrary(callback) {
-                var script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.13/lottie.min.js';
-                script.onload = callback; // Call the callback function once the script is loaded
-                document.head.appendChild(script);
-            }
-
-            // Function to get the URL of the current JavaScript file
-            function getCurrentScriptUrl() {
-                var currentScript = document.currentScript;
-                if (currentScript) {
-                    return currentScript.src;
-                }
-
-                // Fallback method if document.currentScript is not supported
-                var scripts = document.getElementsByTagName('script');
-                return scripts[scripts.length - 1].src;
-            }
-
-            // Function to initialize the Lottie animation after the library is loaded
-            function initializeLottieAnimation() {
-                // Define the path to the JSON file relative to the script's location
-                var scriptUrl = getCurrentScriptUrl();
-                var baseUrl = scriptUrl.substring(0, scriptUrl.lastIndexOf('/') + 1);
-                var animationPath = baseUrl + 'zuzzuu_logo.json';
-
-                lottie.loadAnimation({
-                    container: document.getElementById('lottie'), // Element where the animation will be loaded
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    path: animationPath // Use the dynamically determined path
-                });
-            }
-
-            // Function to initialize everything after the DOM is ready
-            function initialize() {
-                loadLottieLibrary(initializeLottieAnimation); // Load the Lottie library and initialize the animation
-            }
-
-            // Add event listener for DOMContentLoaded
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initialize);
-            } else {
-                initialize(); // If DOMContentLoaded has already fired, run initialize immediately
-            }
-        })();
-    </script>
-</body>
+    <dotlottie-player src="https://lottie.host/01b3af6d-0629-4d91-8aac-c7a82eb1e2ca/iBbb7F80NZ.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player></body>
 </html>
