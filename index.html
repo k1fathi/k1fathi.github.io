@@ -6,6 +6,7 @@
     <title>Developer Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
       * {
         margin: 0;
@@ -170,6 +171,54 @@
           display: none;
         }
       }
+
+      .scroll-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: rgba(100, 255, 218, 0.1);
+        color: #64ffda;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        border: 1px solid #64ffda;
+        font-size: 1.2rem;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        background: rgba(100, 255, 218, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .scroll-top i {
+        margin-top: 2px;
+      }
+
+      .break-link {
+        word-break: break-all;
+        color: #64ffda;
+        text-decoration: none;
+      }
+
+      .break-link:hover {
+        text-decoration: underline;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
   </head>
   <body>
@@ -287,9 +336,8 @@
               <li>
                 Update personal information, including obtaining a 10-digit
                 address number from
-                <a href="https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu"
-                  >https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu</a
-                >
+                <a href="https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu" 
+                   class="break-link">https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu</a>
                 if necessary.
               </li>
             </ul>
@@ -379,6 +427,10 @@
       </section>
     </main>
 
+    <div class="scroll-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
@@ -422,6 +474,38 @@
             trigger: tag,
             start: "top 90%",
           },
+        });
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          
+          window.scrollTo({
+            top: targetSection.offsetTop - 80, // Adjust for nav height
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Scroll to top button
+      const scrollTopBtn = document.querySelector('.scroll-top');
+
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      });
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     </script>
