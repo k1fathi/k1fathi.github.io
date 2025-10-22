@@ -3,16 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Developer Portfolio</title>
+    <title>Javad Fathi – Developer Portfolio</title>
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <!-- DotLottie -->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
       }
 
       body {
@@ -75,7 +79,7 @@
         flex-direction: column;
         justify-content: center;
         min-height: 100vh;
-		padding-top: 6rem;
+        padding-top: 6rem;
       }
 
       h1 {
@@ -95,8 +99,28 @@
       }
 
       .bio {
-        max-width: 600px;
+        max-width: 650px;
         margin-bottom: 2rem;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        line-height: 1.8;
+        color: #a8b2d1;
+        font-size: 1.1rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        letter-spacing: -0.01em;
+      }
+
+      .bio::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: #64ffda;
+        margin-top: 1.5rem;
+        opacity: 0.6;
       }
 
       .projects {
@@ -162,11 +186,9 @@
         h1 {
           font-size: 3rem;
         }
-
         h2 {
           font-size: 2rem;
         }
-
         .nav-links {
           display: none;
         }
@@ -200,10 +222,6 @@
       .scroll-top:hover {
         background: rgba(100, 255, 218, 0.2);
         transform: translateY(-3px);
-      }
-
-      .scroll-top i {
-        margin-top: 2px;
       }
 
       .break-link {
@@ -277,11 +295,6 @@
     <nav>
       <div class="container nav-content">
         <div class="logo">
-          <script
-            src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-            type="module"
-          ></script>
-
           <dotlottie-player
             src="https://lottie.host/f0d11f10-afdd-4efe-9700-39f65e17c812/5hbFYraYh9.json"
             background="transparent"
@@ -310,11 +323,11 @@
         <h1>Javad Fathi</h1>
         <h2>I build things for the web.</h2>
         <div class="bio">
-         I am a seasoned Technical Software Engineer with over 20 years of experience in full-stack development, DevOps, system architecture, and artificial intelligence. I specialize in designing, modernizing, and optimizing high-performance software solutions that drive innovation, efficiency, and business growth.
+          I am a seasoned Technical Software Engineer with over 20 years of experience in full-stack development, DevOps, system architecture, and artificial intelligence. I specialize in designing, modernizing, and optimizing high-performance software solutions that drive innovation, efficiency, and business growth.
 
-Throughout my career, I have led complex projects involving AI-driven systems, automation frameworks, and intelligent agents. I have developed and integrated custom machine learning models tailored to specific business needs, enhancing decision-making and system adaptability. My hands-on expertise spans the entire software development lifecycle—from strategic planning and architecture to deployment and continuous optimization—ensuring solutions are reliable, scalable, and aligned with organizational goals.
+          Throughout my career, I have led complex projects involving AI-driven systems, automation frameworks, and intelligent agents. I have developed and integrated custom machine learning models tailored to specific business needs, enhancing decision-making and system adaptability. My hands-on expertise spans the entire software development lifecycle—from strategic planning and architecture to deployment and continuous optimization—ensuring solutions are reliable, scalable, and aligned with organizational goals.
 
-I am passionate about leveraging emerging technologies, mentoring teams, and delivering solutions that balance quality, scalability, and measurable real-world impact. My goal is to contribute to forward-looking projects where my experience in AI, system design, and software engineering can deliver transformative, intelligent solutions.
+          I am passionate about leveraging emerging technologies, mentoring teams, and delivering solutions that balance quality, scalability, and measurable real-world impact. My goal is to contribute to forward-looking projects where my experience in AI, system design, and software engineering can deliver transformative, intelligent solutions.
         </div>
         <div class="skills">
           <span class="skill-tag">JavaScript</span>
@@ -336,133 +349,34 @@ I am passionate about leveraging emerging technologies, mentoring teams, and del
           <div class="project-card">
             <h3 class="project-title">Vibte News</h3>
             <p>
-              Vibte News is a Python/Flask-based platform automating headline
-              news aggregation and distribution. It collects articles on
-              technology, Python Flask, generative AI, and MongoDB, storing them
-              in a MongoDB database. Using APIs, Vibte News automatically
-              publishes full articles to WordPress and concise summaries to
-              X.com. Docker containers ensure consistent performance and
-              scalability. Optionally, generative AI creates summaries and
-              headlines, further automating content creation. Vibte News
-              streamlines staying informed about the tech world, providing a
-              scalable and efficient solution for content curation and
-              distribution.
+              Vibte News is a Python/Flask-based platform automating headline news aggregation and distribution. It collects articles on technology, Python Flask, generative AI, and MongoDB, storing them in a MongoDB database. Using APIs, Vibte News automatically publishes full articles to WordPress and concise summaries to X.com. Docker containers ensure consistent performance and scalability. Optionally, generative AI creates summaries and headlines, further automating content creation.
             </p>
             <div class="skills">
               <span class="skill-tag">Python</span>
-              <span class="skill-tag">Wordpress</span>
+              <span class="skill-tag">WordPress</span>
               <span class="skill-tag">MongoDB</span>
               <span class="skill-tag">AI</span>
-              <span class="skill-tag">x.com</span>
+              <span class="skill-tag">X.com</span>
             </div>
           </div>
+
           <div class="project-card">
-            <h3 class="project-title">
-              Personal Data Protection Authority, Complaint System
-            </h3>
+            <h3 class="project-title">Personal Data Protection Authority – Complaint System</h3>
             <p>
-              The "KVKK Şikayet Modülü Kılavuzu" is a user guide provided by the
-              Turkish Personal Data Protection Authority (KVKK) to assist
-              individuals in submitting complaints regarding personal data
-              violations. Accessible via the KVKK website or through the
-              e-Government portal, the module allows users to file complaints
-              directly.
+              A secure complaint submission system developed for Turkey’s Personal Data Protection Authority (KVKK), enabling citizens to report data violations via e-Government integration.
             </p>
-            <h3>Accessing the Complaint Module</h3>
-            <ul>
-              <li>
-                Visit <a href="https://www.kvkk.gov.tr">www.kvkk.gov.tr</a> and
-                select "İlgili Kişi Şikayet Bildirimi" on the homepage.
-              </li>
-              <li>
-                Alternatively, access the module through the e-Government
-                system.
-              </li>
-            </ul>
-            <br/>
-            <h3>Filing a Complaint</h3>
-            <h5>Profile Completion</h5>
-            <ul>
-              <li>Log in using e-Government credentials.</li>
-              <li>
-                Ensure your profile is 100% complete; incomplete profiles cannot
-                submit complaints.
-              </li>
-              <li>
-                Update personal information, including obtaining a 10-digit
-                address number from
-                <a href="https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu" 
-                   class="break-link">https://adres.nvi.gov.tr/VatandasIslemleri/AdresSorgu</a>
-                if necessary.
-              </li>
-            </ul>
-
-            <h5>Submitting a Complaint</h5>
-            <ul>
-              <li>
-                After completing your profile, navigate to "Şikayetler" and
-                select "Yeni Şikayet Oluştur."
-              </li>
-              <li>
-                Provide detailed information about the complaint, including the
-                data controller's details and the nature of the violation.
-              </li>
-              <li>Attach any supporting documents as evidence.</li>
-            </ul>
-
-            <h5>Review and Submission</h5>
-            <ul>
-              <li>Review the entered information for accuracy.</li>
-              <li>
-                Submit the complaint; a confirmation message will appear upon
-                successful submission.
-              </li>
-            </ul>
-
-            <p>
-              The guide emphasizes that only individuals submitting complaints
-              on their own behalf can use the module; representatives or
-              guardians cannot file on behalf of others through this system.
-              Additionally
-            </p>
-
             <div class="skills">
-              <span class="skill-tag">Aspnet 7</span>
+              <span class="skill-tag">ASP.NET 7</span>
               <span class="skill-tag">React</span>
-              <span class="skill-tag">MS Sqlserver</span>
+              <span class="skill-tag">MS SQL Server</span>
             </div>
           </div>
+
           <div class="project-card">
             <h3 class="project-title">Vibte AI</h3>
-           <p>
-          Vibte AI is a project focused on building a custom AI model to enhance
-          user engagement and content relevance on a platform (like a website or
-          app). The core idea revolves around creating a model from scratch
-          using TensorFlow, a powerful open-source machine learning library.
-          This approach allows for granular control over the model's
-          architecture and training process, tailoring it specifically to the
-          platform's needs.
-        </p>
-        <p>
-          The unique aspect of Vibte AI lies in its training methodology: it
-          leverages real-time customer reactions and interactions on the
-          platform. This means the model learns directly from user behavior,
-          such as clicks, likes, shares, comments, and time spent on specific
-          content. This feedback loop creates a dynamic learning environment,
-          allowing the model to continuously improve its understanding of user
-          preferences.
-        </p>
-        <p>
-          The development process involves defining the model's architecture
-          within TensorFlow, selecting appropriate algorithms, and designing a
-          data pipeline to efficiently process user interaction data. This data
-          is then used to train the model, iteratively adjusting its parameters
-          to optimize performance. By training on real user data, Vibte AI aims
-          to provide highly personalized recommendations, content suggestions,
-          and overall improved user experience. This approach ensures the model
-          stays relevant and adapts to evolving user trends, ultimately driving
-          engagement and satisfaction.
-        </p>
+            <p>
+              Vibte AI builds a custom TensorFlow model trained on real-time user interactions (clicks, likes, time spent) to deliver hyper-personalized content recommendations. The system continuously adapts to evolving user behavior, enhancing engagement through a dynamic feedback loop.
+            </p>
             <div class="skills">
               <span class="skill-tag">Python</span>
               <span class="skill-tag">TensorFlow</span>
@@ -475,8 +389,7 @@ I am passionate about leveraging emerging technologies, mentoring teams, and del
       <section id="contact" class="contact">
         <h2>Get In Touch</h2>
         <p>
-          I'm currently looking for new opportunities. Whether you have a
-          question or just want to say hi, I'll try my best to get back to you!
+          I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
         </p>
         <a href="mailto:vibte740@gmail.com" class="btn">Let's Connect</a>
       </section>
@@ -489,18 +402,25 @@ I am passionate about leveraging emerging technologies, mentoring teams, and del
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
-      // Animate sections on scroll
+      // Animate sections
       gsap.utils.toArray("section").forEach((section) => {
         gsap.to(section, {
           opacity: 1,
           y: 0,
           duration: 1,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: section, start: "top 80%" },
         });
+      });
+
+      // Animate bio
+      gsap.from(".bio", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.3,
+        scrollTrigger: { trigger: ".bio", start: "top 85%" },
       });
 
       // Animate project cards
@@ -510,14 +430,11 @@ I am passionate about leveraging emerging technologies, mentoring teams, and del
           y: 30,
           duration: 0.8,
           delay: i * 0.2,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: card, start: "top 80%" },
         });
       });
 
-      // Animate skills tags
+      // Animate skill tags
       gsap.utils.toArray(".skill-tag").forEach((tag, i) => {
         gsap.from(tag, {
           opacity: 0,
@@ -525,63 +442,45 @@ I am passionate about leveraging emerging technologies, mentoring teams, and del
           duration: 0.4,
           delay: i * 0.1,
           ease: "back.out",
-          scrollTrigger: {
-            trigger: tag,
-            start: "top 90%",
-          },
+          scrollTrigger: { trigger: tag, start: "top 90%" },
         });
       });
 
-      // Smooth scroll for navigation links
+      // Smooth scroll
       document.querySelectorAll('.nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const targetId = this.getAttribute('href');
           const targetSection = document.querySelector(targetId);
-          
           window.scrollTo({
-            top: targetSection.offsetTop - 80, // Adjust for nav height
+            top: targetSection.offsetTop - 80,
             behavior: 'smooth'
           });
         });
       });
 
-      // Scroll to top button
+      // Scroll-to-top
       const scrollTopBtn = document.querySelector('.scroll-top');
-
       window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-          scrollTopBtn.classList.add('visible');
-        } else {
-          scrollTopBtn.classList.remove('visible');
-        }
+        scrollTopBtn.classList.toggle('visible', window.pageYOffset > 300);
       });
-
       scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // Add this before existing scripts
+      // Mobile menu
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.nav-links');
-      const links = document.querySelectorAll('.nav-links a');
-
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-      });
-
-      links.forEach(link => {
+      document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
           hamburger.classList.remove('active');
           navLinks.classList.remove('active');
         });
       });
-
-      // ...existing scripts...
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
     </script>
   </body>
 </html>
