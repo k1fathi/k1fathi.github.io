@@ -20,15 +20,374 @@
       }
 
       body {
-        background: #0a192f;
+        background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #0a192f 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
         color: #8892b0;
         line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Floating Particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(100, 255, 218, 0.3);
+        border-radius: 50%;
+        animation: float 20s infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Glowing Orbs */
+      .orb {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(100, 255, 218, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+      }
+
+      .orb-1 {
+        top: 20%;
+        left: 10%;
+        animation: orbFloat1 10s ease-in-out infinite;
+      }
+
+      .orb-2 {
+        top: 60%;
+        right: 10%;
+        animation: orbFloat2 12s ease-in-out infinite;
+      }
+
+      .orb-3 {
+        bottom: 20%;
+        left: 30%;
+        animation: orbFloat3 15s ease-in-out infinite;
+      }
+
+      @keyframes orbFloat1 {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.2); }
+      }
+
+      @keyframes orbFloat2 {
+        0%, 100% { transform: translate(-50%, -50%) scale(1.2); }
+        50% { transform: translate(-50%, -50%) scale(1); }
+      }
+
+      @keyframes orbFloat3 {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.3); }
+      }
+
+      /* Text Glow Effect */
+      .glow-text {
+        text-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
+        animation: textGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes textGlow {
+        0%, 100% { text-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2); }
+        50% { text-shadow: 0 0 20px rgba(100, 255, 218, 0.8), 0 0 40px rgba(100, 255, 218, 0.5), 0 0 60px rgba(100, 255, 218, 0.3); }
+      }
+
+      /* Floating Animation */
+      .float {
+        animation: floating 6s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      /* Pulse Animation */
+      .pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+
+      /* Card Hover Effects */
+      .project-card {
+        background: #112240;
+        padding: 2rem;
+        border-radius: 4px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+        transition: left 0.5s;
+      }
+
+      .project-card:hover::before {
+        left: 100%;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(100, 255, 218, 0.15), 0 0 30px rgba(100, 255, 218, 0.1);
+      }
+
+      /* Skill Tag Hover */
+      .skill-tag {
+        background: rgba(100, 255, 218, 0.1);
+        color: #64ffda;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-tag::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(100, 255, 218, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s, height 0.4s;
+      }
+
+      .skill-tag:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        z-index: 1;
+      }
+
+      /* Button Effects */
+      .btn {
+        display: inline-block;
+        background: transparent;
+        color: #64ffda;
+        border: 1px solid #64ffda;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+        margin-top: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background: rgba(100, 255, 218, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+      }
+
+      /* Nav Link Effects */
+      .nav-links a {
+        color: #8892b0;
+        text-decoration: none;
+        transition: all 0.3s;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #64ffda;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-links a:hover {
+        color: #64ffda;
+        text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+      }
+
+      /* Scroll Top Button */
+      .scroll-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: rgba(100, 255, 218, 0.1);
+        color: #64ffda;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid #64ffda;
+        font-size: 1.2rem;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        background: rgba(100, 255, 218, 0.2);
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+      }
+
+      /* Logo Animation */
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #64ffda;
+        transition: all 0.3s;
+      }
+
+      .logo:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.5));
+      }
+
+      /* Highlight Text */
+      .highlight {
+        color: #64ffda;
+        position: relative;
+        display: inline-block;
+      }
+
+      .highlight::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #64ffda, transparent);
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      /* Hamburger Animation */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      .hamburger span {
+        transition: all 0.3s ease;
+      }
+
+      /* Section Reveal Animation */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
       }
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
+        position: relative;
+        z-index: 2;
       }
 
       nav {
@@ -37,41 +396,20 @@
         padding: 1.5rem 0;
         background: rgba(10, 25, 47, 0.85);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         z-index: 100;
+        transition: all 0.3s;
+      }
+
+      nav.scrolled {
+        padding: 1rem 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
       }
 
       .nav-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
-      }
-
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #64ffda;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-
-      .nav-links a {
-        color: #8892b0;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: #64ffda;
-      }
-
-      section {
-        min-height: 100vh;
-        padding: 2rem 0;
-        opacity: 0;
-        transform: translateY(20px);
       }
 
       .hero {
@@ -86,6 +424,7 @@
         font-size: 4rem;
         color: #ffe4e1;
         margin-bottom: 1rem;
+        animation: fadeInUp 1s ease forwards;
       }
 
       h2 {
@@ -99,7 +438,6 @@
       }
 
       .bio {
-        max-width: 650px;
         margin-bottom: 2rem;
         text-align: justify;
         text-justify: inter-word;
@@ -130,21 +468,10 @@
         margin-top: 3rem;
       }
 
-      .project-card {
-        background: #112240;
-        padding: 2rem;
-        border-radius: 4px;
-        transition: transform 0.3s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-      }
-
       .project-title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
-        color:#dee6ff
+        color: #dee6ff;
       }
 
       .skills {
@@ -154,32 +481,8 @@
         margin-top: 1rem;
       }
 
-      .skill-tag {
-        background: rgba(100, 255, 218, 0.1);
-        color: #64ffda;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.875rem;
-      }
-
       .contact {
         text-align: center;
-      }
-
-      .btn {
-        display: inline-block;
-        background: transparent;
-        color: #64ffda;
-        border: 1px solid #64ffda;
-        padding: 1rem 2rem;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: all 0.3s;
-        margin-top: 2rem;
-      }
-
-      .btn:hover {
-        background: rgba(100, 255, 218, 0.1);
       }
 
       @media (max-width: 768px) {
@@ -194,44 +497,16 @@
         }
       }
 
-      .scroll-top {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        background: rgba(100, 255, 218, 0.1);
-        color: #64ffda;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s;
-        border: 1px solid #64ffda;
-        font-size: 1.2rem;
-      }
-
-      .scroll-top.visible {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .scroll-top:hover {
-        background: rgba(100, 255, 218, 0.2);
-        transform: translateY(-3px);
-      }
-
       .break-link {
         word-break: break-all;
         color: #64ffda;
         text-decoration: none;
+        transition: all 0.3s;
       }
 
       .break-link:hover {
         text-decoration: underline;
+        text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
       }
 
       html {
@@ -270,28 +545,106 @@
           height: 100vh;
           background: rgba(10, 25, 47, 0.95);
           backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
           transition: 0.3s ease;
         }
 
         .nav-links.active {
           right: 0;
         }
+      }
 
-        .hamburger.active span:nth-child(1) {
-          transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
+      @keyframes fadeInUp {
+        from {
           opacity: 0;
+          transform: translateY(30px);
         }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-        .hamburger.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -7px);
-        }
+      /* Magnetic Button Effect */
+      .magnetic {
+        transition: transform 0.3s ease;
+      }
+
+      /* Loading Screen */
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a192f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s, visibility 0.5s;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-content {
+        text-align: center;
+      }
+
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(100, 255, 218, 0.3);
+        border-top-color: #64ffda;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      .loader-text {
+        color: #64ffda;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+
+      /* Cursor follower */
+      .cursor-follower {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #64ffda;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, border-color 0.2s;
+        mix-blend-mode: difference;
       }
     </style>
   </head>
   <body>
+    <!-- Loading Screen -->
+    <div class="loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Glowing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
     <nav>
       <div class="container nav-content">
         <div class="logo">
@@ -320,7 +673,7 @@
     <main class="container">
       <section class="hero" id="about">
         <p class="highlight">Hi, my name is</p>
-        <h1>Javad Fathi</h1>
+        <h1 class="glow-text">Javad Fathi</h1>
         <h2>I design and build large-scale software systems.</h2>
         <div class="bio">
           I am a seasoned Technical Software Engineer with over 20 years of experience across full-stack development, DevOps, distributed systems, system architecture, and artificial intelligence. I specialize in designing, modernizing, and optimizing high-performance, event-driven platforms that power mission-critical products and enterprise solutions.
@@ -331,7 +684,7 @@
 
           I'm currently seeking opportunities to contribute to forward-thinking organizations where my experience in AI, distributed architectures, and software engineering can help build intelligent, resilient, and future-ready platforms.
         </div>
-        <div class="skills">
+        <div class="skills reveal-up">
           <span class="skill-tag">JavaScript</span>
           <span class="skill-tag">React</span>
           <span class="skill-tag">Node.js</span>
@@ -350,11 +703,11 @@
       </section>
 
       <section id="work">
-        <h2>Projects Developed Recently</h2>
+        <h2 class="reveal-up">Projects Developed Recently</h2>
 
-        <h3 class="highlight">AI, Data & Automation (Python, AI, Elasticsearch, Redis)</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 2rem;">AI, Data & Automation (Python, AI, Elasticsearch, Redis)</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Vibte News Platform</h3>
             <p>Automated news aggregation, AI summarization, and multi-platform publishing system (WordPress, X).</p>
             <div class="skills">
@@ -366,7 +719,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Vibte AI Recommendation Engine</h3>
             <p>Real-time content personalization using behavioral signals and continuous learning.</p>
             <div class="skills">
@@ -377,7 +730,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">AI Content Moderation System</h3>
             <p>NLP-based filtering system for spam, toxicity, and policy violations.</p>
             <div class="skills">
@@ -388,7 +741,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Search Analytics & Ranking Engine</h3>
             <p>Custom search relevance scoring and click-through optimization.</p>
             <div class="skills">
@@ -398,7 +751,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Automated Data Pipeline Framework</h3>
             <p>ETL pipelines for high-volume data ingestion and transformation.</p>
             <div class="skills">
@@ -408,7 +761,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Real-Time Event Processing System</h3>
             <p>Stream processing for user interactions and telemetry data.</p>
             <div class="skills">
@@ -419,9 +772,9 @@
           </div>
         </div>
 
-        <h3 class="highlight" style="margin-top: 3rem;">Enterprise & Government Systems (.NET, MS SQL Server, React)</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 3rem;">Enterprise & Government Systems (.NET, MS SQL Server, React)</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">KVKK Complaint Management System</h3>
             <p>Secure e-Government integrated complaint submission platform for Turkey's Personal Data Protection Authority.</p>
             <div class="skills">
@@ -431,7 +784,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">GSB AVM Digital Management Platform</h3>
             <p>Digital mall platform offering subscribers exclusive coupons, online shopping features, and integrated digital marketplace services.</p>
             <div class="skills">
@@ -441,7 +794,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Enterprise Document Management System</h3>
             <p>Secure archival, search, and audit-ready document platform.</p>
             <div class="skills">
@@ -451,7 +804,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Role-Based Authorization Framework</h3>
             <p>Centralized authentication & authorization service.</p>
             <div class="skills">
@@ -461,7 +814,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Internal ERP Extension Modules</h3>
             <p>Custom finance, HR, and reporting modules for enterprise ERP.</p>
             <div class="skills">
@@ -470,7 +823,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">High-Availability API Gateway</h3>
             <p>Load-balanced service gateway for internal microservices.</p>
             <div class="skills">
@@ -481,9 +834,9 @@
           </div>
         </div>
 
-        <h3 class="highlight" style="margin-top: 3rem;">Web Platforms & Dashboards (React, Java, PostgreSQL)</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 3rem;">Web Platforms & Dashboards (React, Java, PostgreSQL)</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Admin Analytics Dashboard</h3>
             <p>Real-time metrics, logs, and performance visualization.</p>
             <div class="skills">
@@ -493,7 +846,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Customer Self-Service Portal</h3>
             <p>Scalable web platform for account and subscription management.</p>
             <div class="skills">
@@ -503,7 +856,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Multi-Tenant SaaS Platform</h3>
             <p>Tenant-isolated SaaS architecture with billing and monitoring.</p>
             <div class="skills">
@@ -513,7 +866,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Log Monitoring & Alerting UI</h3>
             <p>Custom visualization layer over Elasticsearch logs.</p>
             <div class="skills">
@@ -522,7 +875,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">API Management Console</h3>
             <p>Developer portal for API keys, rate limits, and usage analytics.</p>
             <div class="skills">
@@ -532,9 +885,9 @@
           </div>
         </div>
 
-        <h3 class="highlight" style="margin-top: 3rem;">Infrastructure, DevOps & Performance (Docker, Redis, ELK)</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 3rem;">Infrastructure, DevOps & Performance (Docker, Redis, ELK)</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Containerized Microservices Platform</h3>
             <p>Migration from monolith to containerized architecture.</p>
             <div class="skills">
@@ -544,7 +897,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Centralized Logging & Observability Stack</h3>
             <p>Full ELK stack implementation with alerts and dashboards.</p>
             <div class="skills">
@@ -554,7 +907,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">High-Performance Caching Layer</h3>
             <p>Redis-based caching strategy reducing API latency by 70%.</p>
             <div class="skills">
@@ -563,7 +916,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Disaster Recovery & Backup Automation</h3>
             <p>Automated DB backups and restore testing.</p>
             <div class="skills">
@@ -573,7 +926,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Scalable Job Queue System</h3>
             <p>Background processing for long-running tasks.</p>
             <div class="skills">
@@ -583,9 +936,9 @@
           </div>
         </div>
 
-        <h3 class="highlight" style="margin-top: 3rem;">Financial, Integration & Legacy Modernization</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 3rem;">Financial, Integration & Legacy Modernization</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Banking Integration Middleware</h3>
             <p>Secure integration layer between wallets and banks.</p>
             <div class="skills">
@@ -594,7 +947,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Payment Reconciliation System</h3>
             <p>Automated reconciliation and audit reporting.</p>
             <div class="skills">
@@ -603,7 +956,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Legacy System Modernization Project</h3>
             <p>Refactored legacy .NET applications into modular services.</p>
             <div class="skills">
@@ -612,7 +965,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Cross-Platform Notification Service</h3>
             <p>Email, SMS, and push notification engine.</p>
             <div class="skills">
@@ -621,7 +974,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Reporting & BI Data Mart</h3>
             <p>Optimized reporting layer for executive dashboards.</p>
             <div class="skills">
@@ -631,9 +984,9 @@
           </div>
         </div>
 
-        <h3 class="highlight" style="margin-top: 3rem;">Internal Tools & Productivity Platforms</h3>
+        <h3 class="highlight reveal-up" style="margin-top: 3rem;">Internal Tools & Productivity Platforms</h3>
         <div class="projects">
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">Low-Code Automation Builder</h3>
             <p>Workflow automation for non-technical users.</p>
             <div class="skills">
@@ -642,7 +995,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-right">
             <h3 class="project-title">Internal Knowledge Base & Search Engine</h3>
             <p>Full-text searchable documentation system.</p>
             <div class="skills">
@@ -651,7 +1004,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card reveal-left">
             <h3 class="project-title">AI-Assisted Developer Tooling</h3>
             <p>Internal tools for code analysis and productivity insights.</p>
             <div class="skills">
@@ -663,12 +1016,12 @@
         </div>
       </section>
 
-      <section id="contact" class="contact">
-        <h2>Get In Touch</h2>
-        <p>
+      <section id="contact" class="contact reveal-up">
+        <h2 class="reveal-up">Get In Touch</h2>
+        <p class="reveal-up">
           I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
         </p>
-        <a href="mailto:vibte740@gmail.com" class="btn">Let's Connect</a>
+        <a href="mailto:vibte740@gmail.com" class="btn magnetic reveal-up">Let's Connect</a>
       </section>
     </main>
 
@@ -677,61 +1030,104 @@
     </div>
 
     <script>
+      // Wait for page to load
+      window.addEventListener('load', () => {
+        // Hide loader
+        setTimeout(() => {
+          document.querySelector('.loader').classList.add('hidden');
+        }, 500);
+      });
+
+      // Create floating particles
+      function createParticles() {
+        const container = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 20 + 's';
+          particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+          particle.style.width = (2 + Math.random() * 4) + 'px';
+          particle.style.height = particle.style.width;
+          particle.style.opacity = 0.1 + Math.random() * 0.3;
+          container.appendChild(particle);
+        }
+      }
+
+      createParticles();
+
+      // GSAP Animations
       gsap.registerPlugin(ScrollTrigger);
 
-      // Animate sections
-      gsap.utils.toArray("section").forEach((section) => {
-        gsap.to(section, {
+      // Reveal animations
+      gsap.utils.toArray('.reveal-up').forEach((element) => {
+        gsap.to(element, {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: section, start: "top 80%" },
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+          },
         });
       });
 
-      // Animate bio
-      gsap.from(".bio", {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: "power3.out",
-        delay: 0.3,
-        scrollTrigger: { trigger: ".bio", start: "top 85%" },
+      gsap.utils.toArray('.reveal-left').forEach((element) => {
+        gsap.to(element, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+          },
+        });
       });
 
-      // Animate project cards
-      gsap.utils.toArray(".project-card").forEach((card, i) => {
-        gsap.from(card, {
+      gsap.utils.toArray('.reveal-right').forEach((element) => {
+        gsap.to(element, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+          },
+        });
+      });
+
+      // Hero animations with stagger
+      const heroElements = gsap.utils.toArray('.hero > *');
+      heroElements.forEach((element, i) => {
+        gsap.from(element, {
           opacity: 0,
           y: 30,
-          duration: 0.8,
-          delay: i * 0.05,
-          scrollTrigger: { trigger: card, start: "top 85%" },
+          duration: 1,
+          delay: i * 0.2,
+          ease: 'power3.out',
         });
       });
 
-      // Animate skill tags
-      gsap.utils.toArray(".skill-tag").forEach((tag, i) => {
-        gsap.from(tag, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.4,
-          delay: i * 0.1,
-          ease: "back.out",
-          scrollTrigger: { trigger: tag, start: "top 90%" },
-        });
+      // Nav scroll effect
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.pageYOffset > 50);
       });
 
       // Smooth scroll
-      document.querySelectorAll('.nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+      document.querySelectorAll('.nav-links a').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const targetId = this.getAttribute('href');
           const targetSection = document.querySelector(targetId);
           window.scrollTo({
             top: targetSection.offsetTop - 80,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         });
       });
@@ -748,7 +1144,7 @@
       // Mobile menu
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.nav-links');
-      document.querySelectorAll('.nav-links a').forEach(link => {
+      document.querySelectorAll('.nav-links a').forEach((link) => {
         link.addEventListener('click', () => {
           hamburger.classList.remove('active');
           navLinks.classList.remove('active');
@@ -758,6 +1154,94 @@
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
       });
+
+      // Magnetic button effect
+      document.querySelectorAll('.magnetic').forEach((btn) => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+      });
+
+      // Skill tags hover effect
+      document.querySelectorAll('.skill-tag').forEach((tag) => {
+        tag.addEventListener('mouseenter', () => {
+          gsap.to(tag, {
+            scale: 1.1,
+            duration: 0.3,
+            ease: 'back.out',
+          });
+        });
+
+        tag.addEventListener('mouseleave', () => {
+          gsap.to(tag, {
+            scale: 1,
+            duration: 0.3,
+          });
+        });
+      });
+
+      // Project cards 3D tilt effect
+      document.querySelectorAll('.project-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+      });
+
+      // Parallax effect on scroll
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const orbs = document.querySelectorAll('.orb');
+        orbs.forEach((orb, index) => {
+          const speed = 0.1 + index * 0.05;
+          orb.style.transform = `translate(-50%, -50%) translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Cursor follower
+      const cursor = document.createElement('div');
+      cursor.className = 'cursor-follower';
+      document.body.appendChild(cursor);
+
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      document.querySelectorAll('a, button, .project-card, .skill-tag').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.width = '40px';
+          cursor.style.height = '40px';
+          cursor.style.borderColor = '#64ffda';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.width = '20px';
+          cursor.style.height = '20px';
+        });
+      });
+
+      // Hide cursor on touch devices
+      if ('ontouchstart' in window) {
+        cursor.style.display = 'none';
+      }
     </script>
   </body>
 </html>
