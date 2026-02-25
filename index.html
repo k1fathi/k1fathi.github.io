@@ -86,7 +86,7 @@
       }
 
       .orb-1 {
-        top: 20%;
+        top: 15%;
         left: 10%;
         animation: orbFloat1 10s ease-in-out infinite;
       }
@@ -98,7 +98,7 @@
       }
 
       .orb-3 {
-        bottom: 20%;
+        bottom: 15%;
         left: 30%;
         animation: orbFloat3 15s ease-in-out infinite;
       }
@@ -667,7 +667,7 @@
         <h1 class="glow-text">Javad Fathi</h1>
         <h2>I design and build large-scale software systems.</h2>
         <div class="bio">
-          <p>I am a seasoned Technical Software Engineer with over 20 years of experience across full-stack development, DevOps, distributed systems, system architecture, and artificial intelligence. I specialize in designing, modernizing, and optimizing high-performance, event-driven platforms that power mission-critical products and enterprise solutions.</p>
+          <p>I am a seasoned Technical Software Engineer with over 15 years of experience across full-stack development, DevOps, distributed systems, system architecture, and artificial intelligence. I specialize in designing, modernizing, and optimizing high-performance, event-driven platforms that power mission-critical products and enterprise solutions.</p>
           <br>
           <p>Throughout my career, I have led complex initiatives involving AI-driven systems, real-time data processing, automation frameworks, and intelligent agents. I have architected and integrated custom machine learning models tailored to specific business domains—enabling smarter decision-making, adaptive behavior, and measurable operational gains.</p>
           <br>
@@ -1038,7 +1038,7 @@
           const particle = document.createElement('div');
           particle.className = 'particle';
           particle.style.left = Math.random() * 100 + '%';
-          particle.style.animationDelay = Math.random() * 20 + 's';
+          particle.style.animationDelay = Math.random() * 15 + 's';
           particle.style.animationDuration = (15 + Math.random() * 10) + 's';
           particle.style.width = (2 + Math.random() * 4) + 'px';
           particle.style.height = particle.style.width;
@@ -1186,8 +1186,8 @@
           const y = e.clientY - rect.top;
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
+          const rotateX = (y - centerY) / 15;
+          const rotateY = (centerX - x) / 15;
 
           card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
